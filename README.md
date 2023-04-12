@@ -26,11 +26,14 @@ Após a execução do comando, a plataforma estará disponível para uso. <br>
 ### Docker
 O Docker foi utilizado no projeto com o objetivo de facilitar a execução da plataforma de Machine Learning. <br>
 Com o Docker, é possível executar a plataforma em qualquer sistema operacional, sem a necessidade de instalar as dependências necessárias para a execução do projeto. <br>
+<hr>
 
 ### Apache Airflow
-Apache Airflow é uma plataforma para criar, programar e monitorar fluxos de trabalho. É uma ferramenta de código aberto para automatizar fluxos de trabalho complexos e gerenciar tarefas de forma programática.
+Apache Airflow é uma plataforma para criar, programar e monitorar fluxos de trabalho. É uma ferramenta de código aberto para automatizar fluxos de trabalho complexos e gerenciar tarefas de forma programática. <br>
 No projeto, será utilizada para orquestrar o scrapping de dados e o treinamento dos modelos de Machine Learning. <br>
-No Airflow, cada fluxo é chamado de Dag (Directed Acyclic Graph). Uma Dag é composta por tarefas, que são executadas em sequência ou em paralelo. Cada tarefa é executada por um operador, que é responsável por executar a tarefa. Os operadores são responsáveis por executar as tarefas, que podem ser qualquer coisa, desde um comando bash até um script Python.
+No Airflow, cada fluxo é chamado de Dag (Directed Acyclic Graph). Uma Dag é composta por tarefas, que são executadas em sequência ou em paralelo. Cada tarefa é executada por um operador, que é responsável por executar a tarefa. <br>
+Os operadores são responsáveis por executar as tarefas, que podem ser qualquer coisa, desde um comando bash até um script Python. <br>
+
 #### Como criar novas tarefas?
 Na pasta Dags do Airflow, há duas subpastas: <br>
 - **data_engineering**: contém os arquivos para scrapping de textos e dados 
@@ -60,6 +63,7 @@ task_example >> task_2
 A partir disso, sua task será exibida na lista de Dags do Airflow.
 
 
+<hr>
 
 ### Jupyter 
 Jupyter é uma aplicação web que permite criar e compartilhar documentos que contém código, equações, visualizações e texto explicativo. Os documentos Jupyter são chamados de notebooks. Os notebooks são executados em um servidor e são acessados por meio de um navegador web. O Jupyter Notebook é uma aplicação web de código aberto que permite criar e compartilhar documentos que contém código, equações, visualizações e texto explicativo. Os documentos Jupyter são chamados de notebooks. Os notebooks são executados em um servidor e são acessados por meio de um navegador web.
