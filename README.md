@@ -6,7 +6,7 @@ A plataforma é composta por 2 componentes principais:
 - [Apache Airflow](<https://airflow.apache.org/>)
 - [Jupyter](<https://jupyter.org/>)
 
-Para executar a plataforma, é necessário ter o [Docker](<https://www.docker.com/>) instalado na máquina.
+Para executar a plataforma, é necessário ter o [Docker](<https://www.docker.com/>) instalado na máquina. <br>
 Inicialmente, clone o repositório:
 ```bash
 git clone
@@ -15,7 +15,7 @@ Em seguida, execute o comando:
 ```bash
 docker-compose up
 ```
-Após a execução do comando, acesse o [Jupyter](<http://localhost:8888/>), utilizando a senha `pantanal.dev`.
+Após a execução do comando, acesse o [Jupyter](<http://localhost:8888/>), utilizando a senha `pantanal.dev`. <br>
 Você pode também acessar o [Apache Airflow](https://airflow.apache.org/) através do endereço [http://localhost:8080/](<http://localhost:8080/>).
 
 ## 💻 Tecnologias
