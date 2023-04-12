@@ -36,7 +36,7 @@ services:
       - JUPYTER_TOKEN=
     volumes:
       - ./data/:/home/jovyan/work/data
-      - ./notebooks/:/home/jovyan/work/notebooks
+      - ./jupyter/notebooks/:/home/jovyan/work/notebooks
 
   postgres:
     image: postgres:13
