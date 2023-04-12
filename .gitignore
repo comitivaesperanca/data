@@ -1,2 +1,4 @@
 /airflow/logs/*
 .env
+__py_cache__
+*.pyc
