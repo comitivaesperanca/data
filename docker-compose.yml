@@ -33,7 +33,7 @@ services:
       - "8888:8888"
     environment:
       - JUPYTER_ENABLE_LAB=yes
-      - JUPYTER_TOKEN=pantanal.dev
+      - JUPYTER_TOKEN=
     volumes:
       - ./data/:/home/jovyan/work/data
       - ./notebooks/:/home/jovyan/work/notebooks

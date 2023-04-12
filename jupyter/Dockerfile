@@ -15,6 +15,9 @@ COPY requirements.txt requirements.txt
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+RUN echo "c.NotebookApp.token = ''" >> /home/jovyan/.jupyter/jupyter_notebook_config.py
+
 RUN chown -R jovyan:users /home/jovyan
 RUN chown -R $NB_UID /home/$NB_USER
 USER $NB_USER
