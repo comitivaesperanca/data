@@ -5,3 +5,4 @@ __py_cache__
 airflow/dags/data_engineering/__pycache__/*
 airflow/dags/data_science/__pycache__/ds_dag.cpython-37.pyc
 airflow/dags/data_engineering/__pycache__/de_dag.cpython-37.pyc
+airflow/dags/data_engineering/__pycache__/de_dag.cpython-37.pyc
