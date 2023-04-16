@@ -33,8 +33,8 @@ with DAG(
     dag_id=dag_id,
     default_args=default_args,
     max_active_runs=1,
-    concurrency=16,
-    schedule_interval="0 0/6 * * *",
+    concurrency=12,
+    schedule_interval="* * * * *",
     catchup=False
 ) as dag:
 
@@ -43,7 +43,7 @@ with DAG(
         dag=dag
     )
 
-    for i in range(5):
+    for i in range(815):
         task_extract_cepea = PythonOperator(
             task_id=f"export_noticias_cepea_{i}",
             python_callable= export_cepea.export_noticias_cepea,

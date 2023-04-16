@@ -65,7 +65,5 @@ def export_noticias_cepea(page_number: int):
             noticias.append({'data': data_noticia, 'titulo': titulo, 'url': url, 'noticia': result})
             df = pd.DataFrame(noticias)
 
-        import os 
-        print(os.listdir('/opt/airflow/data'))
         
-        df.to_csv('opt/airflow/data/ingestion/RAW/noticias_cepea.csv', index=False, mode='a', header=True,  quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", doublequote=False)
+        df.to_csv('data/ingestion/RAW/noticias_cepea.csv', index=False, header=True, mode='a', quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", doublequote=False)
