@@ -33,7 +33,7 @@ services:
       - DJANGO_DB=default
       - POSTGRE_NAME=airflow
       - POSTGRE_USER=airflow
-      - POSTGRE_PASSWORD=
+      - POSTGRE_PASSWORD=airflow
       - POSTGRE_PORT=5432
       - POSTGRE_HOST=postgres
       - JSON_LOG=1
