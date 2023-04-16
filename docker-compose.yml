@@ -12,6 +12,8 @@ x-common:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
+    - ./data/:/opt/airflow/data
+
     - /var/run/docker.sock:/var/run/docker.sock
 
 x-depends-on:
