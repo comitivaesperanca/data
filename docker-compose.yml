@@ -27,15 +27,15 @@ services:
     image: heartexlabs/label-studio:latest
     ports:
       - 9000:9000
-    depends_on:
-      - postgres
+    #depends_on:
+   ###   - postgres
     environment:
-      - DJANGO_DB=default
-      - POSTGRE_NAME=airflow
-      - POSTGRE_USER=airflow
-      - POSTGRE_PASSWORD=airflow
-      - POSTGRE_PORT=5432
-      - POSTGRE_HOST=postgres
+      #- DJANGO_DB=default
+      # - POSTGRE_NAME=airflow
+      # - POSTGRE_USER=airflow
+      # - POSTGRE_PASSWORD=airflow
+      # - POSTGRE_PORT=5432
+      # - POSTGRE_HOST=postgres
       - JSON_LOG=1
       - LABEL_STUDIO_PORT=9000 
     #      - LOG_LEVEL=DEBUG
