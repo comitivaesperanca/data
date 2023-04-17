@@ -30,7 +30,7 @@ with DAG(
     default_args=default_args,
     max_active_runs=1,
     concurrency=12,
-    schedule_interval="* * * * *",
+    schedule_interval=None,
     catchup=False
 ) as dag:
 
