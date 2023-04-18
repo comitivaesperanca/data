@@ -12,6 +12,8 @@ x-common:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
+    - ./data/:/opt/airflow/data
+
     - /var/run/docker.sock:/var/run/docker.sock
 
 x-depends-on:
@@ -23,6 +25,25 @@ x-depends-on:
       condition: service_completed_successfully
 
 services:
+  label_studio_app:
+    image: heartexlabs/label-studio:latest
+    ports:
+      - 9000:9000
+    #depends_on:
+   ###   - postgres
+    environment:
+      #- DJANGO_DB=default
+      # - POSTGRE_NAME=airflow
+      # - POSTGRE_USER=airflow
+      # - POSTGRE_PASSWORD=airflow
+      # - POSTGRE_PORT=5432
+      # - POSTGRE_HOST=postgres
+      - JSON_LOG=1
+      - LABEL_STUDIO_PORT=9000 
+    #      - LOG_LEVEL=DEBUG
+    volumes:
+      - ./label-studio/data/:/label-studio/data:rw
+    command:  [ "label-studio", "start" ]
 
   jupyter_lab:
     container_name: jupyter_lab
