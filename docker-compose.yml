@@ -35,7 +35,7 @@ services:
       - POSTGRE_USER=comitiva_admin
       - POSTGRE_PASSWORD=Esperanca@123
       - POSTGRE_PORT=5432
-      - POSTGRE_HOST=comitivaesperanca-data.postgres.database.azure.com
+      - POSTGRE_HOST=database-pantanaldev-comitivaesperanca.postgres.database.azure.com
       - JSON_LOG=1
       - LABEL_STUDIO_PORT=9000 
     #      - LOG_LEVEL=DEBUG
