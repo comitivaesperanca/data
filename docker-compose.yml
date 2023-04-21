@@ -1,5 +1,4 @@
 version: '3.4'
-
 x-common:
   &common
   build:
@@ -28,7 +27,7 @@ services:
     ports:
       - 9000:9000
     #depends_on:
-   ###   - postgres
+    ###   - postgres
     environment:
       - DJANGO_DB=default
       - POSTGRE_NAME=comitiva_label_studio
@@ -37,11 +36,11 @@ services:
       - POSTGRE_PORT=5432
       - POSTGRE_HOST=database-pantanaldev-comitivaesperanca.postgres.database.azure.com
       - JSON_LOG=1
-      - LABEL_STUDIO_PORT=9000 
+      - LABEL_STUDIO_PORT=9000
     #      - LOG_LEVEL=DEBUG
     volumes:
       - ./label-studio/data/:/label-studio/data:rw
-    command:  [ "label-studio", "start" ]
+    command: [ "label-studio", "start" ]
 
   jupyter_lab:
     container_name: jupyter_lab
