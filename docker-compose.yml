@@ -26,6 +26,8 @@ x-depends-on:
 services:
   label_studio_app:
     image: heartexlabs/label-studio:latest
+    expose:
+      - "9000"
     ports:
       - 9000:9000
     #depends_on:
@@ -43,6 +45,17 @@ services:
     volumes:
       - ./label-studio/data/:/label-studio/data:rw
     command: [ "label-studio", "start" ]
+
+  ngrok:
+    image: shkoliar/ngrok:latest
+    ports:
+      - 4551:4551
+    links:
+      - label_studio_app
+    environment:
+      - AUTH_TOKEN=2O55OUg2iXZk1ITXIKqVtYP4Ygj_cRF232Ab14b6e8qcpAdZ
+      - DOMAIN=label_studio_app
+      - PORT=9000
 
   jupyter_lab:
     container_name: jupyter_lab

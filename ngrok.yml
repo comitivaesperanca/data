@@ -1,0 +1,7 @@
+authtoken: "2O55OUg2iXZk1ITXIKqVtYP4Ygj_cRF232Ab14b6e8qcpAdZ"
+tunnels:
+  label-studio:
+    proto: http
+    addr: localhost:9000
+    host_header: rewrite
+    bind_tls: true
