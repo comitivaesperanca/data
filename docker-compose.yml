@@ -36,7 +36,7 @@ services:
       - DJANGO_DB=default
       - POSTGRE_NAME=comitiva_label_studio
       - POSTGRE_USER=comitiva_admin
-      - POSTGRE_PASSWORD=Esperanca@123
+      - POSTGRE_PASSWORD=Pantanal@123
       - POSTGRE_PORT=5432
       - POSTGRE_HOST=database-pantanaldev-comitivaesperanca.postgres.database.azure.com
       - JSON_LOG=1
