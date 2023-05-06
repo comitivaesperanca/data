@@ -27,9 +27,9 @@ services:
   label_studio_app:
     image: heartexlabs/label-studio:latest
     expose:
-      - "9000"
+      - "8005"
     ports:
-      - 9000:9000
+      - 8005:8005
     #depends_on:
     ###   - postgres
     environment:
@@ -40,7 +40,7 @@ services:
       - POSTGRE_PORT=5432
       - POSTGRE_HOST=database-pantanaldev-comitivaesperanca.postgres.database.azure.com
       - JSON_LOG=1
-      - LABEL_STUDIO_PORT=9000
+      - LABEL_STUDIO_PORT=8005
     #      - LOG_LEVEL=DEBUG
     volumes:
       - ./label-studio/data/:/label-studio/data:rw
@@ -55,7 +55,7 @@ services:
     environment:
       - AUTH_TOKEN=2O55OUg2iXZk1ITXIKqVtYP4Ygj_cRF232Ab14b6e8qcpAdZ
       - DOMAIN=label_studio_app
-      - PORT=9000
+      - PORT=8005
 
   jupyter_lab:
     container_name: jupyter_lab
