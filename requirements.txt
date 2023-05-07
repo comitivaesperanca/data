@@ -1,10 +1,10 @@
+tensorflow
+torch
 feedparser
 beautifulsoup4
 lxml
 pandas
 nltk 
 scikit-learn
-tensorflow
 unidecode
 transformers
-torch
