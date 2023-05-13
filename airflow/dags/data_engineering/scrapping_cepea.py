@@ -29,7 +29,7 @@ with DAG(
     dag_id=dag_id,
     default_args=default_args,
     max_active_runs=1,
-    schedule_interval=None,
+    schedule_interval='0 5 * * *',
     concurrency=12,
     catchup=False
 ) as dag:
@@ -44,7 +44,7 @@ with DAG(
         outlets=[Dataset('data/ingestion/RAW/noticias_cepea_incremental.csv')]
             )
 
-    for i in range(5):
+    for i in range(3):
         task_extract_cepea = PythonOperator(
             task_id=f"export_noticias_cepea_{i}",
             python_callable= export_cepea.export_noticias_cepea,
@@ -54,19 +54,18 @@ with DAG(
         begin_extract >> task_extract_cepea >> end_extract
 
 with DAG(
-    # this DAG should be run when example.csv is updated (by dag1)
     schedule=[Dataset("data/ingestion/RAW/noticias_cepea_incremental.csv")],
     dag_id="Classificacao_Publicacao_Noticias",
     start_date=datetime(2021, 12, 18),
     default_args=default_args,
     max_active_runs=1,
-    schedule_interval=None,
     concurrency=12,
     catchup=False
 ):
     classificacao_publicacao = PythonOperator(
         task_id="classificacao_publicacao",
         python_callable=classification_cepea.classification_publish,
+        op_kwargs={"model": "rede_neural"},
     )
 
     begin_classificacao = DummyOperator(
