@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: comitiva-esperanca-predict-api
+  name: comitiva-esperanca-predict-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comitiva-esperanca-predict-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: comitiva-esperanca-predict-api
+    spec:
+      containers:
+      - image: mfelipemota/comitivaesperanca-predict-api:latest
+        name: comitiva-esperanca-predict-api
+        env:
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 7000 
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: comitiva-esperanca-predict-api-service
+  labels:
+    run: comitiva-esperanca-predict-api-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 7000
+    protocol: TCP
+  selector:
+    app: comitiva-esperanca-predict-api
+  type: LoadBalancer
