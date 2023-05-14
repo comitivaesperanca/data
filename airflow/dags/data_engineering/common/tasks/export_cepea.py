@@ -66,4 +66,7 @@ def export_noticias_cepea(page_number: int):
             df = pd.DataFrame(noticias)
 
         
-        df.to_csv('data/ingestion/RAW/noticias_cepea.csv', index=False, header=True, mode='a', quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", doublequote=False)
+        df.to_csv('data/ingestion/RAW/noticias_cepea_incremental.csv', index=False, header=True, mode='w+', quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", doublequote=False)
+
+
+    
