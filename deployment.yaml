@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: label-studio-app
+  name: label-studio-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: label-studio-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: label-studio-app
+    spec:
+      containers:
+      - image: heartexlabs/label-studio:latest
+        name: label-studio-app
+        env:
+        - name: DJANGO_DB
+          value: default
+        - name: POSTGRE_NAME
+          value: comitiva_label_studio
+        - name: POSTGRE_USER
+          value: comitivaesperanca
+        - name: POSTGRE_PASSWORD
+          value: Pantanal123
+        - name: POSTGRE_PORT
+          value: "5432"
+        - name: POSTGRE_HOST
+          value: pantanaldev-dev.postgres.database.azure.com
+        - name: JSON_LOG
+          value: "1"
+        - name: LABEL_STUDIO_PORT
+          value: "9000"
+        
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 9000 
+status: {}
