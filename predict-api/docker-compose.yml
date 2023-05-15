@@ -1,0 +1,11 @@
+version: '3'
+services:
+  comitivaesperanca-predict-api:
+    image: mfelipemota/comitivaesperanca-predict-api:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7000:7000"
+    volumes:
+      - ./app:/app/
