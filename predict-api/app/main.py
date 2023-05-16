@@ -5,6 +5,8 @@ from pydantic import BaseModel
 from entities.predict_content import predict_content
 from entities.error_message import error_message
 from repositories.predict import predict_text
+from fastapi.middleware.cors import CORSMiddleware
+
 # tags
 tags_metadata = [
     {
@@ -20,12 +22,16 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*']
+)
 
 @app.get("/predict", tags=["predict"], summary="Predict de texto", description="""Endpoint para realizar predições
         utilizando modelo Naive Bayes  ou Rede Neural (baseado em BERT) para 
         realizar o predict do sentimento do textículo encaminhado como parâmetro.""",
         response_description="Predict news category", response_model= Union[predict_content, error_message])
-async def predict(text_content: str, model_type: str = "naive_bayes", response=Response) -> Union[str, float]:
+async def predict(text_content: str, model_type: str = "naive_bayes") -> Union[str, float]:
     if text_content is None:
         return {"message": "É necessário enviar um texto para realizar a predição."}
     if model_type is None:
