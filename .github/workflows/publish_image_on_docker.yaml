@@ -1,4 +1,4 @@
-name: Publish Docker on DockerHub
+name: Publish on DockerHub and deploy on Kubernetes
 
 on:
   push:
@@ -33,3 +33,25 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  delete_frontend_pods:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Azure CLI
+        uses: azure/cli@v1.0.6
+      
+      - name: Login to Azure
+        run: |
+          az login -u ${{ env.AZURE_EMAIL }} -p ${{ env.AZURE_PASSWORD }}
+      
+      - name: Set Azure subscription
+        run: |
+          az account set --subscription 8025b312-f766-47d0-8343-f4a571365c25
+      
+      - name: Get AKS credentials
+        run: |
+          az aks get-credentials --resource-group pantanal_dev --name east-us-2-pantanal-dev
+      
+      - name: Delete AKS frontend pods
+        run: |
+          kubectl delete pods --selector app=comitiva-esperanca-api-predict
