@@ -144,3 +144,87 @@ spec:
   selector:
     app: comitiva-esperanca-api-predict
   type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: comitiva-esperanca-api-predict
+  name: comitiva-esperanca-api-predict
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: comitiva-esperanca-api-predict
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: comitiva-esperanca-api-predict
+    spec:
+      containers:
+      - image: mfelipemota/comitivaesperanca-api-predict:latest
+        name: comitiva-esperanca-api-predict
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 7000 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: label-studio-app
+  name: label-studio-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: label-studio-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: label-studio-app
+    spec:
+      containers:
+      - image: heartexlabs/label-studio:latest
+        name: label-studio-app
+        env:
+        - name: DJANGO_DB
+          value: default
+        - name: POSTGRE_NAME
+          value: comitiva_label_studio
+        - name: POSTGRE_USER
+          value: comitivaesperanca
+        - name: POSTGRE_PASSWORD
+          value: Pantanal123
+        - name: POSTGRE_PORT
+          value: "5432"
+        - name: POSTGRE_HOST
+          value: pantanaldev-dev.postgres.database.azure.com
+        - name: JSON_LOG
+          value: "1"
+        - name: LABEL_STUDIO_PORT
+          value: "9000"
+        
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 9000 
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: label-studio-app-service
+  labels:
+    run: label-studio-app-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 7000
+    protocol: TCP
+  selector:
+    app: label-studio-app
+  type: LoadBalancer
