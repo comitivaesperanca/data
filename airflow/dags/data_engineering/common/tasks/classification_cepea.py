@@ -110,7 +110,7 @@ def classification_publish(model: str = 'naive_bayes'):
         nltk.download('stopwords')
         nltk.download('punkt')
 
-        df_original = pd.read_csv('data/ingestion/RAW/noticias_cepea_incremental.csv', sep=',', on_bad_lines='skip', encoding='utf-8')
+        df_original = pd.read_csv('data/ingestion/RAW/noticias_cepea.csv', sep=',', on_bad_lines='skip', encoding='utf-8')[:2000]
         df = df_original.copy()
         df = df[df['data'] != 'data']
         df = df.dropna()
@@ -130,7 +130,6 @@ def classification_publish(model: str = 'naive_bayes'):
         df = df[df['titulo'].str.contains('soja', flags=re.IGNORECASE)]
 
         df
-
 
         # Pré-processamento dos dados
         stop_words = set(stopwords.words('portuguese'))
@@ -202,18 +201,33 @@ def classification_publish(model: str = 'naive_bayes'):
         df_noticias_predict.drop(columns=['noticia'], inplace=True)
         df_noticias_predict
 
+        def get_random_date(start, end):
+            import random
+            from datetime import timedelta
+            """
+            This function will return a random datetime between two datetime 
+            objects.
+            """
+            # delta between '2023-01-01' and '2023-05-18'
+            delta = datetime.strptime(end, '%Y-%m-%d') - datetime.strptime(start, '%Y-%m-%d')
+            int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
+            random_second = random.randrange(int_delta)
+            return datetime.strptime(start, '%Y-%m-%d') + timedelta(seconds=random_second)
+
+
+        
         df_total = df_original[1:].copy()
         # join df_noticias_predict
         df_total = df_total.merge(df_noticias_predict, how='right', on=['data', 'titulo', 'url'])
         def publicar_noticia(row):
-            url = 'http://20.75.1.155/news'
+            url = 'http://20.190.249.236/news'
             data = {
                 'title': row['titulo'],
                 'newsContent': row['noticia'],
                 "commodityType": "Soja",
                 "source": "CEPEA",
                 # parse date to 2023-05-13T17:54:37.242Z
-                "publicationDate": datetime.strptime(row['data'], '%d/%m/%Y').strftime('%Y-%m-%dT%H:%M:%S.00Z'),
+                "publicationDate": get_random_date('2023-05-11', '2023-05-18').strftime('%Y-%m-%dT%H:%M:%S.00Z'),
                 "positiveSentiment": row['prob_positiva'],
                 "neutralSentiment": row['prob_neutra'],
                 "negativeSentiment": row['prob_negativa'],
