@@ -3,7 +3,7 @@ Repositório para armazenar todos os componentes referentes as atividades de Mac
 
 # ⚠ Para maiores informações~
 Para maiores informações, acesse a documentação:
-- [Documentação do projeto](<https://comitivaesperanca.github.io/Dados/>)
+- [Documentação do projeto](http://comitivaesperanca.github.io/docs/)
 
 ## 🆘 Como executar a plataforma de Machine Learning?
 A plataforma é composta por 2 componentes principais:
